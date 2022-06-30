@@ -3,4 +3,5 @@ from recipes.views import *
 
 urlpatterns = [
     path('', home),
+    path('login/', login),
 ]
