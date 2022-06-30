@@ -1,6 +1,4 @@
 .vscode/
-# project/__pycache__/
-# project/settings.py
-project/
-recipes/
+project/__pycache__/
+project/settings.py
 db.sqlite3
