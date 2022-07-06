@@ -64,6 +64,7 @@
     body{
         font-size: 16px;
         font-family: var(--font-primary);
+        background: var(--color-gray-1);
     }
 
     h1, h2, h3, h4, h5, h6{
@@ -95,4 +96,53 @@
     .main-logo-icon{
         margin-right: 20px;
     }
+
+    .search-form {
+            border: 2px solid var(--color-primary-dark);
+            max-width: 640px;
+            margin: 0 auto;
+            border-radius: 4px;
+            position: relative;
+            transition: all 300ms ease-in-out;
+            box-shadow: 0 0 1em rgba(0, 0, 0, .25);
+        }
+
+        .search-input,
+        .search-button {
+            border: none;
+            background: none;
+            outline: none;
+            padding: 10px;
+            transition: all 300ms ease-in-out;
+        }
+
+        .search-input {
+            width: 100%;
+            padding-right: 30px;
+        }
+
+        .search-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .search-form:focus-within {
+            border-color: var(--color-primary);
+            background: var(--color-white);
+        }
+
+        .search-form:focus-within .search-button {
+            color: var(--color-primary);
+        }
+
+        .main-content {
+            padding-top: 0;
+        }
+
+        .main-content-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--spacing-gutter-large);
+        }
 </style>
