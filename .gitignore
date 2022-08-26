@@ -5,3 +5,4 @@ db.sqlite3
 project/__pycache__
 recipes/__pycache__
 static/admin/
+media/
