@@ -132,7 +132,7 @@
     overflow: hidden;
   }
   .recipe img {
-    max-width: 100%;
+    width: 100%;
   }
   .recipe-list-item {
     max-width: 64rem;
@@ -200,7 +200,7 @@
     filter: brightness(2);
   }
   .main-content-detail  .recipe-list-item {
-    max-width: 70rem;
+    max-width: 100rem;
     margin: 0 auto;
   }
   
@@ -228,4 +228,7 @@
   }
   .main-footer a:hover {
     filter: brightness(0.8);
+  }
+  .fas, .fa-solid {
+    padding-right: 0.25rem;
   }
