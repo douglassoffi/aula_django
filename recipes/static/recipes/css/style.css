@@ -200,7 +200,7 @@
     filter: brightness(2);
   }
   .main-content-detail  .recipe-list-item {
-    max-width: 100rem;
+    max-width: 90rem;
     margin: 0 auto;
   }
   .main-content-detail .recipe-list-item:hover {
@@ -228,4 +228,22 @@
   }
   .fas, .fa-solid {
     padding-right: 0.25rem;
+  }
+  .preparation-steps h1,
+  .preparation-steps h2,
+  .preparation-steps h3,
+  .preparation-steps h4,
+  .preparation-steps h5,
+  .preparation-steps h6,
+  .preparation-steps p,
+  .preparation-steps pre {
+    margin: 2rem;
+  }
+  .preparation-steps ol,
+  .preparation-steps ul {
+    margin: 2rem;
+    padding: 0 2rem;
+  }
+  .preparation-steps {
+    padding: 2rem;
   }
