@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
+# Testa se as URLs estão funcionando corretamente
+
 class RecipeURLsTest(TestCase):
     def test_home_url(self):
         url = reverse('recipes:home')
