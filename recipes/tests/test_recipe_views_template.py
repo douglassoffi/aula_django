@@ -15,11 +15,22 @@ class RecipeViewsTemplateTest(RecipeTestBase):
         self.assertIn('Nenhuma receita encontrada!', response.content.decode('utf-8'))
 
     def test_home_view_template_loads_recipes(self):
-        self.make_recipe(
-            title='title',
-            )
+        title = 'home'
+        self.make_recipe(title=title)
         response = self.client.get(reverse('recipes:home'))
         content = response.content.decode('utf-8')
-        context = response.context['recipes']
-        self.assertIn('title', content)
-        self.assertEqual(len(context), 1)
+        self.assertIn(title, content)
+
+    def test_category_view_template_loads_recipes(self):
+        title = 'category'
+        self.make_recipe(title=title)
+        response = self.client.get(reverse('recipes:category', kwargs={'category_id': 1}))
+        content = response.content.decode('utf-8')
+        self.assertIn(title, content)
+
+    def test_recipe_view_template_loads_recipes(self):
+        title = 'recipe'
+        self.make_recipe(title=title)
+        response = self.client.get(reverse('recipes:recipe', kwargs={'id': 1}))
+        content = response.content.decode('utf-8')
+        self.assertIn(title, content)
