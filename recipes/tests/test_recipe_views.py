@@ -1,10 +1,10 @@
-from django.test import TestCase
+from recipes.tests.test_recipe_base import RecipeTestBase
 from django.urls import reverse, resolve
 from recipes.views import *
 
 # Testa se a view utilizada é a correta
 
-class RecipeViewsTest(TestCase):
+class RecipeViewsTest(RecipeTestBase):
     def test_home_view(self):
         view = resolve(reverse('recipes:home'))
         self.assertIs(view.func, home)
