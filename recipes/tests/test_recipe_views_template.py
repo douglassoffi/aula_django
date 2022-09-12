@@ -27,6 +27,11 @@ class RecipeViewsTemplateTest(RecipeTestBase):
         response = self.client.get(reverse('recipes:home'))
         self.assertIn(home_no_recipes_message, response.content.decode('utf-8'))
 
+    def test_category_view_template_used(self):
+        self.make_recipe()
+        response = self.client.get(reverse('recipes:category', kwargs={'category_id': 1}))
+        self.assertTemplateUsed(response, 'recipes/pages/category.html')
+
     def test_category_view_template_loads_recipes(self):
         title = 'category'
         self.make_recipe(title=title)
@@ -34,7 +39,10 @@ class RecipeViewsTemplateTest(RecipeTestBase):
         content = response.content.decode('utf-8')
         self.assertIn(title, content)
 
-
+    def test_recipe_view_template_used(self):
+        self.make_recipe()
+        response = self.client.get(reverse('recipes:recipe', kwargs={'id': 1}))
+        self.assertTemplateUsed(response, 'recipes/pages/recipe-view.html')
 
     def test_recipe_view_template_loads_recipes(self):
         title = 'recipe'
