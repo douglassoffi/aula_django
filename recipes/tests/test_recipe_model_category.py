@@ -16,5 +16,4 @@ class CategoryModelTest(RecipeTestBase):
                 self.category.full_clean()
 
     def test_category_representation(self):
-        name = 'name'
-        self.assertEqual(str(self.category), name)
+        self.assertEqual(str(self.category), self.category.name)
