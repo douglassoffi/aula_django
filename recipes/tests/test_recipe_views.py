@@ -16,3 +16,7 @@ class RecipeViewsTest(RecipeTestBase):
     def test_recipe_view(self):
         view = resolve(reverse('recipes:recipe', kwargs={'id': 1}))
         self.assertIs(view.func, recipe)
+
+    def test_search_view(self):
+        view = resolve(reverse('recipes:search'))
+        self.assertIs(view.func, search)

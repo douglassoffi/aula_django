@@ -50,3 +50,7 @@ class RecipeViewsTemplateTest(RecipeTestBase):
         response = self.client.get(reverse('recipes:recipe', kwargs={'id': 1}))
         content = response.content.decode('utf-8')
         self.assertIn(title, content)
+
+    def test_search_view_template_used(self):
+        response = self.client.get(reverse('recipes:search'))
+        self.assertTemplateUsed(response, 'recipes/pages/search.html')
