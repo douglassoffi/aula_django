@@ -15,7 +15,7 @@ class RecipeSearchTest(RecipeTestBase):
         response = self.client.get(reverse('recipes:search'))
         self.assertEqual(response.status_code, 404)
 
-    def test_search_view_template_used(self):
+    def test_search_template_used(self):
         response = self.client.get(reverse('recipes:search') + '?q=test')
         self.assertTemplateUsed(response, 'recipes/pages/search-view.html')
 
