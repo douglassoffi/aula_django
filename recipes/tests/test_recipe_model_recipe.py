@@ -38,15 +38,11 @@ class RecipeModelTest(RecipeTestBase):
 
     def test_preparation_steps_is_html_is_false_by_default(self):
         recipe = self.make_recipe_no_defaults()
-        self.assertFalse(
-            recipe.preparation_steps_is_html,
-        )
+        self.assertFalse(recipe.preparation_steps_is_html)
 
     def test_is_published_is_false_by_default(self):
         recipe = self.make_recipe_no_defaults()
-        self.assertFalse(
-            recipe.is_published,
-        )
+        self.assertFalse(recipe.is_published)
 
     def test_string_representation(self):
         self.assertEqual(str(self.recipe), self.recipe.title)

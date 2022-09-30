@@ -54,3 +54,7 @@ class RecipeViewsTemplateTest(RecipeTestBase):
     def test_search_view_template_used(self):
         response = self.client.get(reverse('recipes:search') + '?q=test')
         self.assertTemplateUsed(response, 'recipes/pages/search-view.html')
+
+    def test_search_term_is_escaped(self):
+        response = self.client.get(reverse('recipes:search') + '?q=<test>')
+        self.assertIn('&quot;&lt;test&gt;&quot;', response.content.decode('utf-8'))      
