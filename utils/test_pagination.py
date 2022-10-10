@@ -17,4 +17,12 @@ class PaginationTest(TestCase):
             current_page=5
             )
         self.assertEqual([4, 5, 6, 7], pagination)
+
+    def test_change_range_when_last_page_is_equal_or_greater_than_total_pages(self):
+        pagination = make_pagination_range(
+            page_range=list(range(1,21)),
+            qty_pages=4,
+            current_page=20
+            )
+        self.assertEqual([17, 18, 19, 20], pagination)
     
