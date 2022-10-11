@@ -18,8 +18,8 @@ def home(request):
     page_obj = paginator.get_page(current_page)
 
     pagination_range = make_pagination_range(
-        page_range= paginator.page_range, 
-        qty_pages=10, 
+        page_range=paginator.page_range, 
+        qty_pages=5, 
         current_page=current_page,
         )
 
