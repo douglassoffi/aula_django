@@ -1,10 +1,8 @@
 # git rm -r --cached <nome arquivo>
 .vscode/
-project/settings.py
 db.sqlite3
 project/__pycache__
 recipes/__pycache__
-static/admin/
 media/
 __pycache__
 .pytest_cache
