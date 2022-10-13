@@ -14,12 +14,12 @@ def home(request):
         current_page = int(request.GET.get('page', 1))
     except ValueError:
         current_page = 1
-    paginator = Paginator(recipes, 12)
+    paginator = Paginator(recipes, 6)
     page_obj = paginator.get_page(current_page)
 
     pagination_range = make_pagination_range(
         page_range=paginator.page_range, 
-        qty_pages=5, 
+        qty_pages=10, 
         current_page=current_page,
         )
 
