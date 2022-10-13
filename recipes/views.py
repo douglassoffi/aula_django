@@ -3,6 +3,9 @@ from recipes.models import Recipe
 from django.http import Http404
 from django.db.models import Q
 from utils.pagination import make_pagination
+import os
+
+PER_PAGE = os.environ.get('PER_PAGE', 6)
 
 def home(request):
     recipes = Recipe.objects.filter(
@@ -12,6 +15,7 @@ def home(request):
     page_obj, pagination_range =  make_pagination(
         request, 
         object_list=recipes, 
+        per_page=PER_PAGE,
     )
 
     return render(request, 'recipes/pages/home.html', context={
@@ -31,6 +35,7 @@ def category(request, category_id):
     page_obj, pagination_range =  make_pagination(
         request, 
         object_list=recipes, 
+        per_page=PER_PAGE,
     )
 
     return render(request, 'recipes/pages/category.html', context={
@@ -65,6 +70,7 @@ def search(request):
     page_obj, pagination_range =  make_pagination(
         request, 
         object_list=recipes, 
+        per_page=PER_PAGE,
     )
 
     return render(request, 'recipes/pages/search-view.html', context={

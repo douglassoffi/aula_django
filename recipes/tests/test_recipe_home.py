@@ -1,6 +1,7 @@
 from recipes.tests.test_recipe_base import RecipeTestBase
 from django.urls import reverse, resolve
 from recipes.views import *
+from unittest.mock import patch
 
 # Precisa ser alterado se arquivo ./recipes/templates/pages/home.html, linha 11 for alterado!
 home_no_recipes_message = 'Nenhuma receita encontrada!'
@@ -37,3 +38,21 @@ class RecipeHomeTest(RecipeTestBase):
         self.make_recipe(is_published=False)
         response = self.client.get(reverse('recipes:home'))
         self.assertIn(home_no_recipes_message, response.content.decode('utf-8'))
+
+    @patch('recipes.views.PER_PAGE', new=1)
+    def test_home_is_paginated(self):
+        for i in range(3):
+            kwargs = {
+                'slug':f'slug-{i}',
+                'author':{
+                    'username':f'username-{i}'
+                }
+            }
+            self.make_recipe(**kwargs)
+        response = self.client.get(reverse('recipes:home'))
+        recipes = response.context['recipes']
+        paginator = recipes.paginator
+        self.assertEqual(paginator.num_pages, 3)
+        self.assertEqual(len(paginator.get_page(1)), 1)
+        self.assertEqual(len(paginator.get_page(2)), 1)
+        self.assertEqual(len(paginator.get_page(3)), 1)
