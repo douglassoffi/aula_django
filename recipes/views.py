@@ -3,7 +3,6 @@ from recipes.models import Recipe
 from django.http import Http404
 from django.db.models import Q
 from utils.pagination import make_pagination
-from django.contrib import messages
 import os
 
 PER_PAGE = os.environ.get('PER_PAGE', 6)
@@ -12,8 +11,6 @@ def home(request):
     recipes = Recipe.objects.filter(
         is_published=True,
     ).order_by('-id')
-
-    messages.info(request, 'ESTE É UM TESTE DE MENSAGEM!')
 
     page_obj, pagination_range =  make_pagination(
         request, 
