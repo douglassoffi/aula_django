@@ -13,11 +13,14 @@ def home(request):
         is_published=True,
     ).order_by('-id')
 
+    messages.info(request, 'ESTE É UM TESTE DE MENSAGEM!')
+
     page_obj, pagination_range =  make_pagination(
         request, 
         object_list=recipes, 
         per_page=PER_PAGE,
     )
+
 
     return render(request, 'recipes/pages/home.html', context={
         'recipes': page_obj,
