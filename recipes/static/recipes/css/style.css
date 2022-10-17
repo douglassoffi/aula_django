@@ -32,6 +32,7 @@
     --color-gray-9: #191919;
     --font-primary: sans-serif;
     --font-headings: 'Roboto Slab', serif;
+    --spacing-gutter-small: 1rem;
     --spacing-gutter-medium: 3rem;
     --spacing-gutter-large: 4rem;
   }
@@ -317,4 +318,16 @@
     border: 1px solid var(--color-debug-dark);
     background: var(--color-debug-light);
     color: var(--color-debug-dark);
+  }
+
+  .message-container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--spacing-gutter-small);
+  }
+
+  @media (max-width: 600px) {
+    .main-content-list {
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
   }
