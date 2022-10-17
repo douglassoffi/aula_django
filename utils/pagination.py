@@ -35,7 +35,7 @@ def make_pagination_range(
         'last_page_out_of_range': last_page_out_of_range,
     }
 
-def make_pagination(request, object_list, per_page, qty_pages=10):
+def make_pagination(request, object_list, per_page, qty_pages=4):
     try:
         current_page = int(request.GET.get('page', 1))
     except ValueError:
