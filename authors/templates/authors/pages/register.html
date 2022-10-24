@@ -6,15 +6,7 @@
     <div class="main-content center container">
         <h1>Registre-se</h1>
     </div>
-    {% if form.errors %}
-        <div class="main-content center container">
-            <div class="form-group">
-                <div class="message message-error">
-                    Formulário preenchido incorretamente. Verifique os campos!
-                </div>
-            </div>
-        </div>
-    {% endif %} 
+    {% include 'recipes/partials/messages.html' %}
     <div class="main-content container">
         <form action="{% url 'authors:create' %}" method="POST">
             {% csrf_token %}
