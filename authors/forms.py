@@ -1,13 +1,27 @@
 from django import forms
 from django.contrib.auth.models import User 
 from django.core.exceptions import ValidationError
+import re
 
 def add_placeholder(field, placeholder_value):
     field.widget.attrs['placeholder'] = placeholder_value
 
+def password_validation(password):
+    regex = re.compile(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$')
+
+    if not regex.match(password):
+        raise ValidationError((
+            '''Senha deve possuir, ao menos, 1 letra maiúscula,
+            1 letra minúscula e um número'''
+        ),
+            code='invalid'
+        )
+
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        # Exeample
         # add_placeholder(self.fields['email'], 'Ex.: exemplo@email.com')
 
     
@@ -15,7 +29,8 @@ class RegisterForm(forms.ModelForm):
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(),
-        label='*Senha'
+        label='*Senha',
+        validators=[password_validation]
     )
 
     password2 = forms.CharField(
@@ -47,5 +62,6 @@ class RegisterForm(forms.ModelForm):
             raise ValidationError({
                 'password': 'Senhas precisam ser iguais',
                 'password2': 'Senhas precisam ser iguais',
-            })
+            },
+            code='Invalid')
             
