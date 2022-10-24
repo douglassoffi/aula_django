@@ -7,12 +7,13 @@ def add_placeholder(field, placeholder_value):
     field.widget.attrs['placeholder'] = placeholder_value
 
 def password_validation(password):
-    regex = re.compile(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$')
+    regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
 
     if not regex.match(password):
         raise ValidationError((
             '''Senha deve possuir, ao menos, 1 letra maiúscula,
-            1 letra minúscula e um número'''
+            1 letra minúscula, 1 número e deve possuir
+            no mínimo 8 caracteres'''
         ),
             code='invalid'
         )
@@ -30,7 +31,7 @@ class RegisterForm(forms.ModelForm):
         required=True,
         widget=forms.PasswordInput(),
         label='*Senha',
-        validators=[password_validation]
+        validators=[password_validation]    
     )
 
     password2 = forms.CharField(
