@@ -6,6 +6,7 @@ from django.contrib import messages
 def register(request):
     register_form_data = request.session.get('register_form_data')
     form = RegisterForm(register_form_data)
+    
     return render(request, 'authors/pages/register.html', context={
         'form':form,
         'title': 'Registre-se'
