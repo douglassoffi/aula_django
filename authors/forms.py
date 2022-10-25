@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
-def add_placeholder(field, placeholder_value):
-    field.widget.attrs['placeholder'] = placeholder_value
+# def add_placeholder(field, placeholder_value):
+#     field.widget.attrs['placeholder'] = placeholder_value
 
 def password_validation(password):
     regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
