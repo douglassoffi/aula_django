@@ -26,15 +26,15 @@ class RecipeModelTest(RecipeTestBase):
         return recipe
 
     @parameterized.expand([
-            ('title', 50),
-            ('description', 150),
-            ('preparation_time_unit', 50),
-            ('servings_unit', 50)
-        ])
+        ('title', 50),
+        ('description', 150),
+        ('preparation_time_unit', 50),
+        ('servings_unit', 50)
+    ])
     def test_field_max_length(self, field, max_length):
-            setattr(self.recipe, field, 'A' * (max_length + 1))
-            with self.assertRaises(ValidationError):
-                self.recipe.full_clean()
+        setattr(self.recipe, field, 'A' * (max_length + 1))
+        with self.assertRaises(ValidationError):
+            self.recipe.full_clean()
 
     def test_preparation_steps_is_html_is_false_by_default(self):
         recipe = self.make_recipe_no_defaults()
