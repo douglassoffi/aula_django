@@ -13,7 +13,7 @@ def password_validation(password):
         raise ValidationError((
             '''Senha deve possuir, ao menos, 1 letra maiúscula,
             1 letra minúscula, 1 número e deve possuir
-            no mínimo 8 caracteres'''
+            no mínimo 8 caracteres.'''
         ),
             code='invalid'
         )
@@ -21,11 +21,13 @@ def password_validation(password):
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        # Exeample
+        
         # add_placeholder(self.fields['email'], 'Ex.: exemplo@email.com')
 
-    
+    username = forms.CharField(
+        required=True,
+        label='*Nome de usuário'
+    )
 
     password = forms.CharField(
         required=True,
@@ -49,10 +51,6 @@ class RegisterForm(forms.ModelForm):
             'email',
             'password',
         ]
-
-        labels = {
-            'username':'*Nome de usuário'
-        }
 
     def clean(self):
         cleaned_data = super().clean()
