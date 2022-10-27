@@ -11,9 +11,7 @@ def password_validation(password):
 
     if not regex.match(password):
         raise ValidationError((
-            '''Senha deve possuir, ao menos, 1 letra maiúscula,
-            1 letra minúscula, 1 número e deve possuir
-            no mínimo 8 caracteres.'''
+            'Senha deve possuir, ao menos, 1 letra maiúscula, 1 letra minúscula, 1 número e deve possuir no mínimo 8 caracteres.'
         ),
             code='invalid'
         )
@@ -26,14 +24,19 @@ class RegisterForm(forms.ModelForm):
 
     username = forms.CharField(
         required=True,
-        label='*Nome de usuário'
+        label='*Nome de usuário',
+        min_length=4, max_length=50,
+        error_messages={
+            'min_length': 'Este campo deve possuir no mínimo 4 caracteres.',
+            'max_length': 'Este campo deve possuir no máximo 50 caracteres.'
+        }
     )
 
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(),
         label='*Senha',
-        validators=[password_validation]    
+        validators=[password_validation]
     )
 
     password2 = forms.CharField(
