@@ -71,3 +71,15 @@ class AuthorRegisterFormTest(TestCase):
 
         self.assertIn(msg, response.context['form'].errors.get('password'))
         self.assertIn(msg, response.context['form'].errors.get('password2'))
+
+    def test_register_create_only_accept_POST(self):
+        url = reverse('authors:create')
+        response = self.client.get(url)
+
+        self.assertEqual(404, response.status_code)
+
+    def test_authors_is_registered_if_all_field_are_correct(self):
+        url = reverse('authors:create')
+        response = self.client.post(url, data=self.form_data, follow=True)
+
+        self.assertEqual(200, response.status_code)
