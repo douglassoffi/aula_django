@@ -78,7 +78,7 @@ class AuthorRegisterFormTest(TestCase):
 
         self.assertEqual(404, response.status_code)
 
-    def test_authors_is_registered_if_all_field_are_correct(self):
+    def test_author_is_registered_if_all_field_are_correct(self):
         url = reverse('authors:create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
