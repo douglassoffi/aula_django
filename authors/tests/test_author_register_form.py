@@ -83,3 +83,11 @@ class AuthorRegisterFormTest(TestCase):
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertEqual(200, response.status_code)
+
+    def test_email_is_not_create_if_already_in_use(self):
+        url = reverse('authors:create')
+        self.client.post(url, data=self.form_data, follow=True)
+        response = self.client.post(url, data=self.form_data, follow=True)
+        msg = 'O e-mail informado já está em uso.'
+
+        self.assertIn(msg, response.context['form'].errors.get('email'))
